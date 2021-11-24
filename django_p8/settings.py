@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-t46%tfpu&dh868*%$f_cl-!5t1qiv=ycwbv)l*ud&@t6^%20p%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["nutella974.herokuapp.com","127.0.0.1"]
 
 
 # Application definition
@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "nutella",
-    "users",
     "off",
+    # "users",
 ]
 
 MIDDLEWARE = [
@@ -112,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Indian/Reunion"
 
 USE_I18N = True
 
@@ -130,3 +130,7 @@ STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+LOGIN_REDIRECT_URL = "/"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+STATIC_ROOT = BASE_DIR / "staticfiles"

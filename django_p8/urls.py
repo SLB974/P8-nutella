@@ -22,6 +22,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("nutella/", include("nutella.urls")),
     path("off/", include("off.urls")),
-    path("users/", include("users.urls")),
+    # path("users/", include("users.urls")),
     path("", RedirectView.as_view(url="nutella/", permanent=True)),
 ]
