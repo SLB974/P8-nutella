@@ -32,10 +32,6 @@ class ApiConsulter:
         response = requests.get(url, params=criterias)
         response = response.json()
 
-        with open("cat_"+category, "w") as f:
-            json.dump(response, f)
-            
-
         return response
     
     @classmethod
