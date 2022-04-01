@@ -1,5 +1,8 @@
-$chocolat: #c45525;
-$moules:#345a61;
-$bonbon:#86ebe6;
-$caramel:#de9440;
-$biscuit:#e8a75d;
+#bottomNav>li>.nav-link:hover {
+    color: $bonbon;
+}
+
+#bottomNav {
+    background-color: $moules;
+    border-top: solid 1px $chocolat;
+}

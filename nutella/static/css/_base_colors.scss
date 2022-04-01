@@ -1,7 +1,61 @@
   :root {
-      --chocolat: #c45525;
-      --moules: #345a61;
-      --bonbon: #86ebe6;
-      --caramel: #de9440;
-      --biscuit: #e8a75d;
+    --nutriscoreA: #0e8c4f;
+    --nutriscoreB: #7ec247;
+    --nutriscoreC: #fbcb29;
+    --nutriscoreD: #fb7f1d;
+    --nutriscoreE: #f13c1d;
+  }
+
+  $chocolat: #c45525;
+  $moules:#345a61;
+  $bonbon:#86ebe6;
+  $caramel:#de9440;
+  $biscuit:#e8a75d;
+
+  body {
+    min-width: 320px;
+  }
+
+  .back_link {
+    color: wheat;
+  }
+
+  .back_link:hover {
+    color: $bonbon;
+  }
+
+  .page_link {
+    color: $chocolat;
+  }
+
+  .page_link:hover {
+    color: $bonbon;
+  }
+
+  .bottom_link {
+    color: wheat;
+  }
+
+  .bottom_link:hover {
+    color: $bonbon;
+  }
+
+  #form_submit {
+    background-color: $bonbon;
+  }
+
+  #buttons-addon2:hover {
+    background-color: $bonbon;
+  }
+
+  .legal {
+    color: wheat;
+  }
+
+  .legal:hover {
+    color: $bonbon;
+  }
+
+  .text-danger {
+    font-weight: bold;
   }

@@ -88,9 +88,10 @@ body {
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
-  color: var(--bs-body-color);
+  color: var(--bs-body-bg);
   text-align: var(--bs-body-text-align);
-  background-color: var(--bs-bonbon);
+  background-color: var(--bs-chocolat);
+  min-width: fit-content;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -3633,14 +3634,14 @@ fieldset:disabled .btn {
 }
 
 .btn-outline-primary {
-  color: #f4623a;
-  border-color: #f4623a;
+  color: var(--bs-bonbon);
+  border-color: var(--bs-bonbon);
 }
 
 .btn-outline-primary:hover {
   color: #fff;
-  background-color: #f4623a;
-  border-color: #f4623a;
+  background-color: var(--bs-bonbon);
+  border-color: var(--bs-bonbon);
 }
 
 .btn-check:focus+.btn-outline-primary,
@@ -3654,8 +3655,8 @@ fieldset:disabled .btn {
 .btn-outline-primary.active,
 .btn-outline-primary.dropdown-toggle.show {
   color: #fff;
-  background-color: #f4623a;
-  border-color: #f4623a;
+  background-color: var(--bs-bonbon);
+  border-color: var(--bs-bonbon);
 }
 
 .btn-check:checked+.btn-outline-primary:focus,
@@ -3668,7 +3669,7 @@ fieldset:disabled .btn {
 
 .btn-outline-primary:disabled,
 .btn-outline-primary.disabled {
-  color: #f4623a;
+  color: var(--bs-bonbon);
   background-color: transparent;
 }
 
@@ -4355,7 +4356,7 @@ fieldset:disabled .btn {
 .dropdown-menu-dark .dropdown-item.active,
 .dropdown-menu-dark .dropdown-item:active {
   color: #fff;
-  background-color: #f4623a;
+  background-color: var(--bs-bonbon);
 }
 
 .dropdown-menu-dark .dropdown-item.disabled,
@@ -4497,7 +4498,7 @@ fieldset:disabled .btn {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
-  color: #f4623a;
+  color: wheat;
   text-decoration: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
@@ -4510,7 +4511,7 @@ fieldset:disabled .btn {
 
 .nav-link:hover,
 .nav-link:focus {
-  color: #c34e2e;
+  color: #86ebe6;
 }
 
 .nav-link.disabled {
@@ -8693,6 +8694,7 @@ fieldset:disabled .btn {
 .text-danger {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-danger-rgb), var(--bs-text-opacity)) !important;
+  font-weight: bold;
 }
 
 .text-light {
@@ -12255,7 +12257,7 @@ body {
 }
 
 .page-section {
-  padding: 8rem 0;
+  padding: 4rem 0;
 }
 
 .text-white-75 {
@@ -12275,7 +12277,7 @@ hr.divider {
   height: 0.2rem;
   max-width: 3.25rem;
   margin: 1.5rem auto;
-  background-color: #f4623a;
+  background-color: var(--bs-bonbon);
   opacity: 1;
 }
 
