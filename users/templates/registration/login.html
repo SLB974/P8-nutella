@@ -1,0 +1,41 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+<!-- Masthead-->
+<header class="masthead">
+  <div class="container px-4 px-lg-5 h-100">
+    <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+      <div class="col-lg-8 align-self-center">
+        <h2 class="text-white font-weight-bold">Connection à mon compte</h2>
+        <hr class="divider"/>
+
+        {% if form.errors %}
+          <h5 class="text-danger">Les informations sont invalides.</h5>
+          <h5 class="text-danger">Veuillez vérifier vos e-mail et mot de passe.</h5>
+          <hr class="divider"/>
+        {% endif %}
+
+
+        <div class="d-flex h-100 align-items-center justify-content-center text-center register_header">
+          <div class="col-lg-6 col-sm-8 align-items-center justify-content-center">
+            
+            <form method="POST" id="login_form" autocomplete="off">
+              {% csrf_token %}
+              <input type="text" class="form-control" name="username" placeholder="Nom d'utilisateur">
+              <br />
+              <input type="password" class="form-control" name="password" placeholder="Mot de passe">
+              <br />
+              <button type="submit" class="btn btn-xl" id="form_submit">Connection</button>
+            </form>
+
+            <br />
+
+            <a class="back_link" href="{% url 'signup' %}">Je n'ai pas de compte ?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}
