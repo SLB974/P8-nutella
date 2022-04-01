@@ -19,13 +19,20 @@ class Product(models.Model):
         on_delete=models.CASCADE,
         verbose_name="related category"
     )
-    brand=models.CharField(max_length=100, null=False, blank=False)
-    score=models.CharField(max_length=1, null=False, blank=False)    
-
+    brand=models.CharField(max_length=200, null=False, blank=False)
+    score=models.CharField(max_length=1, null=False, blank=False)
+    pic_url=models.CharField(max_length=500, null=False, blank=True)
+    url=models.CharField(max_length=500, null=False, blank=True)
+    energy=models.IntegerField(null=False, blank=False, default=0)
+    carbo=models.DecimalField(decimal_places=3, max_digits=7, default=0)
+    fat=models.DecimalField(decimal_places=3, max_digits=7, default=0)
+    proteins=models.DecimalField(decimal_places=3, max_digits=7, default=0)
+    sodium=models.DecimalField(decimal_places=3, max_digits=7, default=0)
+    fiber=models.DecimalField(decimal_places=3, max_digits=7, default=0)
+    
     def __str__(self):
         return self.product
-    
-class Favorites(models.Model):
+class Favorite(models.Model):
     """ Model representing user's favorites """
 
     user_id=models.ForeignKey(
@@ -34,7 +41,13 @@ class Favorites(models.Model):
 
     product_id = models.ForeignKey(
         Product,
-        on_delete=models.CASCADE,
-        verbose_name="related product"
-    )
+        on_delete=models.CASCADE, null=False, blank=False, related_name="replaced_id")
+    
+    replacement_id = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE, null=False, blank=False, default=0)
       
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields = ['user_id', 'product_id', 'replacement_id'], name='unique_replacement')
+        ]
