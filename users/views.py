@@ -7,16 +7,6 @@ from django.urls import reverse
 
 from .forms import CustomUserCreationForm, UserForm
 
-# Create your views here.
-
-def login(request):
-    """login view"""
-    return render(request, 'login.html')
-
-def logout(request):
-    """logout view"""
-    return render(request,'logout.html')
-
 def account(request):
     """ view to see account details """
     form=UserForm()
@@ -45,7 +35,7 @@ def signup(request):
     
     if User.objects.filter(username=username).exists():
         context["message"]="Le nom de l'utilisateur est déjà attribué."
-        context["advice"]="Choisissez un autre nom d'utilisateur"
+        context["advice"]="Choisissez un autre nom d'utilisateur."
         return render(request, 'registration/signup.html', context)
         
     if User.objects.filter(email=email).exists():
