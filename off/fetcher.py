@@ -81,7 +81,7 @@ class ApiConsulter:
             if nutriment not in record['nutriments']:
                 return False
             
-            if record['nutriments'] == '':
+            if record['nutriments'][nutriment] == '':
                 return False
             
         return True
