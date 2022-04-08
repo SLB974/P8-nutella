@@ -10,13 +10,11 @@ def index(request):
     """generic view"""
     return render(request,'nutella/index.html')
 
-def product(request):
+def product(request, pk):
     """detail product view"""
-    return render(request,'nutella/product.html')
-
-def legal_notice(request):
-    """display legal notice"""
-    return render(request, 'nutella/legal_notice.html')
+    detail = Product.objects.get(pk=pk)
+    context = {"product":detail}
+    return render(request,'nutella/product.html', context)
 
 def search_product(request):
     """search view for index search"""
@@ -56,24 +54,29 @@ def save_favorite(request, pk_replaced, pk_replacing):
     """save replacement product in database for the current user"""
     replaced = Product.objects.get(id=pk_replaced)
     replacing = Product.objects.get(id=pk_replacing)
-    favorite = Favorite(
+    
+    Favorite.objects.create(
         product_id = replaced,
         replacement_id = replacing,
         user_id = request.user)
-    favorite.save()
+    
     previous_url = request.META.get('HTTP_REFERER')
     return redirect(previous_url)
-   
-    
+
 @login_required
 def delete_favorite(request, pk):
     """delete replacement product in database for the current user"""
-    print(pk)
-    return render(request, 'index.html')
+    Favorite.objects.filter(id__exact=pk).delete()
+    previous_url = request.META.get('HTTP_REFERER')
+    return redirect(previous_url)
 
 @login_required
 def product_user(request, pk):
     """display favorite recorded product for current user"""
-    context={'product_list': Favorite.objects.select_related('product_id', 'user_id').filter(user_id__exact=pk)}
+    queryset = Favorite.objects.filter(user_id__exact=pk)
+    context={'product_list': queryset }
     return render(request, 'nutella/product_user.html', context)
- 
+
+def legal_notice(request):
+    """display legal notice"""
+    return render(request, 'nutella/legal_notice.html')

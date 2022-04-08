@@ -115,18 +115,18 @@
           <div class="collapse navbar-collapse" id="navbarResponsive">
             {% if user.is_authenticated %}
             <ul class="navbar-nav ms-auto my-2 my-lg-0">
-              <a class="clickable" href="{% url 'account' %}"
+              <a class="clickable account" href="{% url 'account' %}"
                 ><li class="nav-item">
                   <i
                     class="fas fa-user"
                     title="Mon compte ({{user.username}})"
                   ></i></li
               ></a>
-              <a class="clickable" href="{% url 'product' %}"
+              <a class="clickable product" href="{% url 'product_user' user.id %}"
                 ><li class="nav-item">
                   <i class="fas fa-carrot" title="Mes produits"></i></li
               ></a>
-              <a class="clickable" href="{% url 'logout' %}"
+              <a class="clickable logout" href="{% url 'logout' %}"
                 ><li class="nav-item">
                   <i
                     class="fa-solid fa-arrow-right-from-bracket"
@@ -134,7 +134,7 @@
                   ></i></li
                   ></a>
                   {% if user.is_superuser %}
-                    <a class="clickable" href="{% url 'database' %}"
+                    <a class="clickable database" href="{% url 'database' %}"
                   ><li class="nav-item">
                     <i
                       class="fa-solid fa-database"
@@ -145,7 +145,7 @@
             </ul>
             {% else %}
             <ul class="navbar-nav ms-auto my-2 my-lg-0">
-              <a href="{% url 'signup' %}"
+              <a class='signup' href="{% url 'signup' %}"
                 ><li class="nav-item">
                   <i
                     class="fa-solid fa-user-plus"
@@ -154,6 +154,7 @@
               ></a>
               <a
                 id="loginAnchor"
+                class="login"
                 href="{% url 'login' %}"
                 ><li class="nav-item">
                   <i
