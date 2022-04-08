@@ -19,9 +19,9 @@
 },
 {
     "model": "auth.user",
-    "pk": 5,
+    "pk": 2,
     "fields": {
-        "password": "pbkdf2_sha256$260000$YdSjKPClzEhIlniUUnKLyI$kOKKp/CH+80tuh42bTB/YJtMcIwuxr1vYXwI5NA/+jE=",
+        "password": "coco",
         "last_login": "2022-03-20T02:22:02.274Z",
         "is_superuser": false,
         "username": "slb",

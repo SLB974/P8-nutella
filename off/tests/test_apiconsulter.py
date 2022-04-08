@@ -7,6 +7,8 @@ from django.test import TestCase
 from off.fetcher import ApiConsulter
 from off.fixtures.fields_bunch import (correct_fields_noodle,
                                        correct_nutriments_noodle,
+                                       empty_fields_noodle,
+                                       empty_nutriments_noodle,
                                        wrong_fields_noodle,
                                        wrong_nutriments_noodle)
 from off.models import Category, Favorite, Product
@@ -30,10 +32,6 @@ class ApiConsulterTestCase(TestCase):
         with open('off/fixtures/fromages_product.json', 'r', encoding='utf-8') as file:
             return json.load(file)
         
-    def new_db_clean(self):
-        pass
-    
-    
     def test_category_should_have_one_record(self):
         self.assertEqual(Category.objects.count(),1)
         
@@ -49,17 +47,25 @@ class ApiConsulterTestCase(TestCase):
     def test_check_fields_returns_false_with_wrong_data(self):
         self.assertFalse(self.consulter.check_fields(wrong_fields_noodle))
     
+    def test_check_fields_returns_false_with_empty_data(self):
+        self.assertFalse(self.consulter.check_fields(empty_fields_noodle))
+    
     def test_check_fields_returns_true_with_correct_data(self):
         self.assertTrue(self.consulter.check_fields(correct_fields_noodle))
     
     def test_check_nutriments_returns_false_with_wrong_data(self):
         self.assertFalse(self.consulter.check_nutriments(wrong_nutriments_noodle))
+        
+    def test_check_nutriments_returns_false_with_empty_data(self):
+        self.assertFalse(self.consulter.check_nutriments(empty_nutriments_noodle))
     
     def test_check_nutriments_returns_true_with_correct_data(self):
         self.assertTrue(self.consulter.check_nutriments(correct_nutriments_noodle))
 
     def test_save_category_should_add_fromage_category(self):
-        self.assertEqual(self.consulter.save_category('Fromages').category,'Fromages')
+        category = self.consulter.save_category('Fromages')
+        if category is not None:
+            self.assertEqual(category.category,'Fromages')
         
     def test_create_record_should_return_Product_object(self):
         record = self.fromages_record()
@@ -145,4 +151,12 @@ class ApiConsulterTestCase(TestCase):
         consulter.db_save()
         self.assertEqual(Product.objects.count(), 5)
         
-        
+    @patch('off.fetcher.CATEGORIES', ['Fromages'])
+    @patch('off.fetcher.ApiConsulter.get_results')
+    @patch('off.fetcher.Product.objects.bulk_create')
+    def test_db_save_should_pass_if_value_error(self, mock_bulk_create, mock_get_results):
+        mock_bulk_create.side_effect = ValueError
+        mock_get_results.return_value= self.fromages_api_response()
+        consulter = ApiConsulter()
+        consulter.db_save()
+        self.assertRaises(ValueError)
