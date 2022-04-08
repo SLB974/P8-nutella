@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -32,6 +33,7 @@ class Product(models.Model):
     
     def __str__(self):
         return self.product
+    
 class Favorite(models.Model):
     """ Model representing user's favorites """
 
@@ -45,7 +47,10 @@ class Favorite(models.Model):
     
     replacement_id = models.ForeignKey(
         Product,
-        on_delete=models.CASCADE, null=False, blank=False, default=0)
+        on_delete=models.CASCADE, null=False, blank=False, default=0, related_name="replacing_id")
+    
+    def __str__(self):
+        return str(self.user_id) + "/" +  str(self.product_id) + " vs " +  str(self.replacement_id)
       
     class Meta:
         constraints = [
