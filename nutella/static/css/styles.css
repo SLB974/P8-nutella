@@ -90,7 +90,12 @@ body {
   line-height: var(--bs-body-line-height);
   color: var(--bs-body-bg);
   text-align: var(--bs-body-text-align);
-  background-color: var(--bs-chocolat);
+  /* background-color: var(--bs-biscuit); */
+  background: linear-gradient(90deg, var(--bs-biscuit), var(--bs-caramel));
+  /* background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+            linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%); */
+  
   min-width: fit-content;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

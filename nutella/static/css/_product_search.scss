@@ -24,11 +24,11 @@
     max-width: 100%;
 }
 
-// #search_view {
-//     position: absolute;
-//     top: 40%;
-// }
 .card_holder {
+    position: relative;
+    top: 40%;
+}
+.detail {
     position: relative;
     top: 45%;
 }
@@ -57,4 +57,17 @@
 
 #off {
     color: black;
+}
+
+.nutritional_values{
+    top:200px;
+    position:relative;
+}
+
+.table > tbody > tr > td {
+    border-bottom: 1px solid $bonbon;
+}
+
+.table > thead > tr > th{
+    background-color: $chocolat;
 }
