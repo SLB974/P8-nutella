@@ -22,10 +22,22 @@
             
             <form method="POST" id="login_form" autocomplete="off">
               {% csrf_token %}
-              <input type="text" class="form-control" name="username" placeholder="Nom d'utilisateur">
+
+              <!-- <input type="text" class="form-control" name="username" placeholder="Nom d'utilisateur">
               <br />
               <input type="password" class="form-control" name="password" placeholder="Mot de passe">
-              <br />
+              <br /> -->
+              <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <input type="text" class="form-control username" placeholder="Nom d'utilisateur" name="username" aria-label="Username" aria-describedby="Username">
+              </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                <input type="password" class="form-control password" placeholder="Mot de passe" name="password" aria-label="password" aria-describedby="password">
+              </div>
+
+
               <button type="submit" class="btn btn-xl" id="form_submit">Connection</button>
             </form>
 

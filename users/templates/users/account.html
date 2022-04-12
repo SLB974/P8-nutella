@@ -1,17 +1,16 @@
 {% extends "base.html"  %}
-{% block content %}
 {% load static %}
-<div class="d-flex row-fluid align-items-center top_account">
-    <div class="col-12 text-center">
-        <h1 class="text-white font-weigth-bold"> A hoy !</h1>
-        <h1 class="text-white font-weigth-bold">{{user.username}}</h1>
-    </div>
-</div>
+{% block banner %}
+{% include 'nutella/components/custom_banner.html' with h11='A hoy !' h12=user.username pclass="custom_banner"%}
+{% endblock %}
+{% block content %}
 <div class="d-flex row-fluid align-items-center justify-content-center form_section">
     <div class="col-lg-4 col-sm-10 col-md-5">
         <div class="input-group mb-3">
             <span class="input-group-text">@</span>
             <input class="form-control" name="email" type="email" value="{{ user.email }}" disabled readonly></div>
+            <br>
+            <br>
             <a class="nav-link text-center back_link" href="{% url 'index' %}">Retour à l'accueil</a>
         </div>
     </div>
