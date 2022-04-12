@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.test import Client, TestCase
 from django.urls import reverse
+from nutella.views import nutriscore
 from off.models import Favorite
 
 
@@ -57,6 +58,13 @@ class TestNutellaStandardViews(TestCase):
     def test_legal_notice_view_renders_proper_template(self):
         response = self.client.get(reverse('legal_notice'))
         self.assertTemplateUsed(response, 'nutella/legal_notice.html')
+        
+    def test_nutriscore_should_return_proper_value(self):
+        self.assertTrue('Nutri-score-A' in nutriscore('a'))
+        self.assertTrue('Nutri-score-B' in nutriscore('b'))
+        self.assertTrue('Nutri-score-C' in nutriscore('c'))
+        self.assertTrue('Nutri-score-D' in nutriscore('d'))
+        self.assertTrue('Nutri-score-E' in nutriscore('e'))
         
 class TestSaveFavoriteView(TestCase):
 
