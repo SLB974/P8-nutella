@@ -97,10 +97,15 @@ def save_favorite(request, pk_replaced, pk_replacing):
     replaced = Product.objects.get(id=pk_replaced)
     replacing = Product.objects.get(id=pk_replacing)
     
-    Favorite.objects.create(
-        product_id = replaced,
-        replacement_id = replacing,
-        user_id = request.user)
+    try:
+    
+        Favorite.objects.create(
+            product_id = replaced,
+            replacement_id = replacing,
+            user_id = request.user)
+        
+    except:
+        pass
     
     previous_url = request.META.get('HTTP_REFERER')
     return redirect(previous_url)

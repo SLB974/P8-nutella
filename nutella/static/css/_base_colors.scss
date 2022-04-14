@@ -4,6 +4,8 @@
     --nutriscoreC: #fbcb29;
     --nutriscoreD: #fb7f1d;
     --nutriscoreE: #f13c1d;
+    --title_font: 'Open Sans', sans-serif;
+    --base_font: 'Scope One', sans-serif;
   }
 
   $chocolat: #c45525;
@@ -11,51 +13,120 @@
   $bonbon:#86ebe6;
   $caramel:#de9440;
   $biscuit:#e8a75d;
-
+  
   body {
     min-width: 320px;
+    background: linear-gradient(90deg, var(--bs-biscuit), var(--bs-caramel));
+    font: var(--base_font);
   }
 
-  .back_link {
-    color: wheat;
+  h6,
+  .h6,
+  h5,
+  .h5,
+  h4,
+  .h4,
+  h3,
+  .h3,
+  h2,
+  .h2,
+  h1,
+  .h1 {
+    font-family: var(--title_font);
   }
 
-  .back_link:hover {
-    color: $bonbon;
+  a,
+  p{
+    font-family: var(--base_font);
+  }
+
+  .back_link,
+  .bottom_link,
+  .legal{
+    color: whitesmoke;
   }
 
   .page_link {
     color: $chocolat;
   }
-
-  .page_link:hover {
-    color: $bonbon;
-  }
-
-  .bottom_link {
-    color: wheat;
-  }
-
-  .bottom_link:hover {
-    color: $bonbon;
-  }
-
+ 
   #form_submit {
     background-color: $bonbon;
   }
-
-  #buttons-addon2:hover {
-    background-color: $bonbon;
-  }
-
-  .legal {
-    color: wheat;
-  }
-
-  .legal:hover {
-    color: $bonbon;
-  }
-
+   
   .text-danger {
     font-weight: bold;
   }
+
+  #mainNav .navbar-brand:hover,
+  #mainNav .navbar-toggler:hover,
+  .back_link:hover,
+  .page_link:hover,
+  .bottom_link:hover,
+  .legal:hover,
+  .nav-item>i:hover,
+  #bottomNav>li>.nav-link:hover,
+  #buttons-addon2:hover{
+    color: $bonbon;
+  }
+
+  #mainNav{
+    background-color: $moules;
+    border-bottom: solid 1px $chocolat;
+  }
+
+  #mainNav .navbar-brand {
+    color:whitesmoke;
+    font-family: var(--title_font);
+    font-size: 2vw;
+  }
+
+  .logo {
+    width: 3em;
+    height: auto;
+    padding-right: 10px;
+}
+
+.nav-item>i {
+    color: $caramel;
+    font-size: 1.5em;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#home_search {
+    border-radius: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 50%;
+}
+
+#home_search:focus {
+    opacity: 100%;
+}
+
+.legal_top {
+    position: absolute;
+    top: 6em;
+}
+
+#bottomNav {
+  background-color: $moules;
+  border-top: solid 1px $chocolat;
+}
+
+#bottomNav>ul>li>a{
+  font-family: var(--base_font);
+}
+
+// #mainNav .navbar-toggler,
+// #mainNav .navbar-toggler-right{
+//   color:whitesmoke;
+// }
+
+.input-group>i {
+  color: $caramel;
+  font-size: 1.5em;
+  padding-top: 10px;
+  padding-right: 10px;
+}
