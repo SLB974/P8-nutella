@@ -4689,6 +4689,7 @@ fieldset:disabled .btn {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
+  color:whitesmoke;
 }
 
 .navbar-nav-scroll {
@@ -4725,7 +4726,7 @@ fieldset:disabled .btn {
   }
 
   .navbar-expand-sm .navbar-toggler {
-    display: none;
+    display:none;
   }
 
   .navbar-expand-sm .offcanvas-header {

@@ -18,6 +18,8 @@ class TestFunctionalBrowser(StaticLiveServerTestCase):
     
     def setUp(self):
         self.browser = webdriver.Chrome('c:/drivers/chromedriver.exe')
+        self.browser.set_window_position(2000,0)
+        self.browser.maximize_window()
     
     def tearDown(self):
         self.browser.close()

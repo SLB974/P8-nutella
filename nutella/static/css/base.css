@@ -68,18 +68,27 @@ p {
 #mainNav {
   background-color: #345a61;
   border-bottom: solid 1px #c45525;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 
 #mainNav .navbar-brand {
   color: whitesmoke;
   font-family: var(--title_font);
-  font-size: 2vw;
+  font-size: 1.5vw;
 }
 
 .logo {
-  width: 3em;
+  width: 2.5em;
   height: auto;
   padding-right: 10px;
+}
+
+#mainNav .nav_container {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .nav-item > i {
@@ -94,6 +103,7 @@ p {
   margin-left: auto;
   margin-right: auto;
   opacity: 50%;
+  font-family: var(--base_font);
 }
 
 #home_search:focus {
@@ -153,6 +163,10 @@ p {
 
 .table > tr {
   border-bottom-color: #86ebe6;
+}
+
+.custom_banner .h3 {
+  font-size: 0.5em;
 }
 
 .product_search_top {
