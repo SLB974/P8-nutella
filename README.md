@@ -28,11 +28,10 @@ Run test by using coverage.
 coverage run manage.py test -v 2
 coverage html
 ```
-# run local server and enjoy !
+
+Run local server and enjoy !
+```
 python manage.py runserver
 ```
 
-
-
-
-You can find the production project at https://pur-beurre-974.herokuapp.com
+You can find this project in production at https://pur-beurre-974.herokuapp.com
