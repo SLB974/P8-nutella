@@ -22,4 +22,4 @@ python -m pip install -r requirements.txt
 python manage.py runserver
 ```
 
-You can find the production project at [www.](https://pur-beurre-974.herokuapp.com)
+You can find the production project at (https://pur-beurre-974.herokuapp.com)
