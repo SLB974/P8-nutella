@@ -4,6 +4,7 @@ from users.forms import CustomUserCreationForm
 
 
 class TestUserViews(TestCase):
+    """testing users views"""
     
     fixtures = ['fixture_user.json']
     

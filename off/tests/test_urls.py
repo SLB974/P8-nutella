@@ -6,6 +6,7 @@ from off.views import database
 
 
 class TestOffUrls(SimpleTestCase):
+    """testing off only url"""
 
     def test_database_url_resolves(self):
         url = reverse('database')

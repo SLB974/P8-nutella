@@ -15,6 +15,7 @@ from off.models import Category, Favorite, Product
 
 
 class ApiConsulterTestCase(TestCase):
+    """Test class for ApiConsulter"""
     
     fixtures = ['fixture_category.json',
             'fixture_product.json',

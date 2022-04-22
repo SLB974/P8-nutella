@@ -1,3 +1,5 @@
+"""Nutella views tests"""
+
 from django.contrib.auth.models import User
 from django.test import Client, TestCase
 from django.urls import reverse
@@ -6,6 +8,7 @@ from off.models import Favorite
 
 
 class TestNutellaStandardViews(TestCase):
+    """nutella views tests with no login required"""
     
     fixtures = [
         'fixture_category.json',
@@ -67,6 +70,7 @@ class TestNutellaStandardViews(TestCase):
         self.assertTrue('Nutri-score-E' in nutriscore('e'))
         
 class TestSaveFavoriteView(TestCase):
+    """nutella Save Favorite View with login required tests"""
 
     fixtures = [
         'fixture_category.json',
@@ -106,6 +110,7 @@ class TestSaveFavoriteView(TestCase):
         self.assertEqual(Favorite.objects.count(),1)
 
 class TestDeleteFavoriteView(TestCase):
+    """nutella delete favorite view with login required"""
     
     fixtures = [
         'fixture_category.json',
@@ -146,6 +151,7 @@ class TestDeleteFavoriteView(TestCase):
         self.assertEqual(Favorite.objects.count(), 0)
 
 class TestProductUserView(TestCase):
+    """nutella user product view with login required"""
     
     fixtures = [
     'fixture_category.json',

@@ -7,6 +7,7 @@ from users import views
 
 
 class TestUserUrls(SimpleTestCase):
+    """testing users urls"""
 
     def test_account_url_resolves(self):
         url = reverse('account')

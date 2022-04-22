@@ -6,6 +6,7 @@ from nutella import views
 
 
 class TestNutellaUrls(SimpleTestCase):
+    "testing nutella urls return proper template"
     
     def test_index_url_resolves(self):
         url = reverse('index')

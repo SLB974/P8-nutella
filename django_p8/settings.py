@@ -14,7 +14,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
-from .config.settings import DEBUG, SECRET_KEY
+from .config.settings import BDD_PASSW, DEBUG, SECRET_KEY
 
 # import dj_database_url
 

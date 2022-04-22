@@ -6,6 +6,7 @@ from off.models import Category, Favorite, Product
 
 
 class CategoryModelTest(TestCase):
+    """testing off model Category"""
 
     fixtures = ['fixture_category.json',
         'fixture_product.json',
@@ -18,6 +19,7 @@ class CategoryModelTest(TestCase):
         self.assertEqual(str(category), expected)
         
 class ProductModelTest(TestCase):
+    """testing off model Product"""
 
     fixtures = ['fixture_category.json',
             'fixture_product.json',
@@ -30,6 +32,7 @@ class ProductModelTest(TestCase):
         self.assertEqual(str(product), expected)
 
 class FavoriteModelTest(TestCase):
+    """testing off model Favorite"""
     
     fixtures = ['fixture_category.json',
             'fixture_product.json',

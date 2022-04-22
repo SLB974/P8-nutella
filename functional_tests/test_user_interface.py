@@ -1,5 +1,5 @@
-import time
-from locale import currency
+"""Functional tests wtith Selenium"""
+# import time
 
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.urls import reverse
@@ -9,6 +9,7 @@ from selenium.webdriver.common.keys import Keys
 
 
 class TestFunctionalBrowser(StaticLiveServerTestCase):
+    """testing a user journey with Selenium"""
     
     fixtures = [
         'fixture_category',

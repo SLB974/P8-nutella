@@ -78,6 +78,7 @@ confidence=
 # --enable=similarities". If you want to run only the classes checker, but have
 # no Warning level messages displayed, use "--disable=all --enable=classes
 # --disable=W".
+
 disable=raw-checker-failed,
         bad-inline-option,
         locally-disabled,
@@ -88,8 +89,11 @@ disable=raw-checker-failed,
         use-symbolic-message-instead,
         django-not-configured,
         line-too-long,
+        unused-import,
         invalid-name,
         C0303, C0111, C0114, C0115, C0116, E5142,
+        trailing-whitespace,
+
 
 
 

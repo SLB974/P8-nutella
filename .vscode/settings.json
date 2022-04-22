@@ -15,10 +15,11 @@
         "django_p8\\nutella\\static\\css/base.css": false,
         "django_p8\\nutella\\static\\css/index.css": true
     },
-    "python.linting.pylintEnabled": true,
+    "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": false,
-    "python.linting.enabled": true,
+    "python.linting.enabled": false,
     "python.linting.banditEnabled": false,
     "html.autoClosingTags": true,
     "explorerExclude.backup": null,
+    "python-languageServer": "None"
 }
