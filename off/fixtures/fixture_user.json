@@ -1,6 +1,6 @@
 [
 {
-    "model": "auth.user",
+    "model": "users.CustomUser",
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$260000$ukywPbfBgCDgFFSCUkRmmY$Q6GeR2U0T5lupuRFmq79PbzJP4ek7xJVhJhSVwTU1mM=",
@@ -18,7 +18,7 @@
     }
 },
 {
-    "model": "auth.user",
+    "model": "users.CustomUser",
     "pk": 2,
     "fields": {
         "password": "coco",
@@ -27,7 +27,7 @@
         "username": "slb",
         "first_name": "",
         "last_name": "",
-        "email": "slb974run@gmail.com",
+        "email": "papa@gmail.com",
         "is_staff": false,
         "is_active": true,
         "date_joined": "2022-03-20T02:22:02.047Z",

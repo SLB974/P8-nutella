@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.postgres",
     "django_dumpdata_one",
+    "allauth",
+    "allauth.account",
     "nutella",
     "off",
     "users",
@@ -70,7 +72,8 @@ ROOT_URLCONF = "django_p8.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "DIRS": [os.path.join(BASE_DIR, "templates"),
+                 os.path.join(BASE_DIR, "templates/accounts")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -94,7 +97,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "nutella",
         "USER": "slb",
-        "PASSWORD": "jade",
+        "PASSWORD": BDD_PASSW,
         "HOST": "localhost",
         "PORT": "",
     }
@@ -189,3 +192,6 @@ if DEBUG:
     # mimetypes.add_type("application/javascript", ".js", True)
 
 TESTS_SHOW_BROWSER = True
+AUTH_USER_MODEL = 'users.CustomUser'
+AUTHENTICATION_BACKENDS = ['users.backends.EmailBackend']
+SITE_ID=1

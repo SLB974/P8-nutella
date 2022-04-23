@@ -20,21 +20,35 @@
         <div class="d-flex h-100 align-items-center justify-content-center text-center register_header">
           <div class="col-lg-6 col-sm-8 align-items-center justify-content-center">
             
-            <form method="POST" id="login_form" autocomplete="off">
+            <form method="POST" id="login_form" autocomplete="off" action="{% url 'login' %}">
               {% csrf_token %}
 
-              <!-- <input type="text" class="form-control" name="username" placeholder="Nom d'utilisateur">
-              <br />
-              <input type="password" class="form-control" name="password" placeholder="Mot de passe">
-              <br /> -->
               <div class="input-group mb-3">
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                <input type="text" class="form-control username" placeholder="Nom d'utilisateur" name="username" aria-label="Username" aria-describedby="Username">
+                <span class="input-group-text"><i class="fas fa-at"></i></span>
+                <input type="text" 
+                class="form-control email" 
+                placeholder="Nom d'utilisateur ou email" 
+                name="username"
+                aria-label="username"
+                aria-describedby="username"
+                required
+                id="id_username"
+                pb-role="username">
               </div>
 
               <div class="input-group mb-3">
                 <span class="input-group-text"><i class="fas fa-key"></i></span>
-                <input type="password" class="form-control password" placeholder="Mot de passe" name="password" aria-label="password" aria-describedby="password">
+                <input type="password" 
+                class="form-control password" 
+                placeholder="Mot de passe" 
+                name="password" 
+                aria-label="password" 
+                aria-describedby="password"
+                autocomplete="current-password"
+                required
+                id="id_password"
+                pb-role="password"
+                >
               </div>
 
 

@@ -23,6 +23,16 @@ Install requirements with pip.
 python -m pip install -r requirements.txt
 ```
 
+Apply migrations
+```
+python manage.py migrate
+```
+
+Populate database
+```
+python manage.py fetchdata
+```
+
 Run test by using coverage.
 ```
 coverage run manage.py test -v 2

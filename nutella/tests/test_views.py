@@ -1,6 +1,6 @@
 """Nutella views tests"""
 
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 from django.urls import reverse
 from nutella.views import nutriscore
@@ -74,18 +74,29 @@ class TestSaveFavoriteView(TestCase):
 
     fixtures = [
         'fixture_category.json',
-        'fixture_product.json'
+        'fixture_product.json',
+        'fixture_user.json'
     ]
     
+    @staticmethod
+    def user_creation():
+        username="papa"
+        password="nimportequoi70"
+        User = get_user_model()
+        user = User.objects.create_user(username, password=password)
+      
     @classmethod
     def setUpTestData(cls):
         cls.client = Client()
-        cls.user = User.objects.create_user(username='john', password='lennon')
         cls.kwargs = {'pk_replaced':1, 'pk_replacing':2}
         cls.url = 'save_favorite'
     
+    
+    
     def setUp(self):
-        self.client.login(username = 'john', password='lennon')
+        self.user_creation()
+        self.client.login(username='papa', password='nimportequoi70')
+        
     
     def test_response_with_no_user_logged(self):
         self.client.logout()
@@ -96,7 +107,7 @@ class TestSaveFavoriteView(TestCase):
         self.client.logout()
         response = self.client.post(reverse(self.url, kwargs=self.kwargs))
         expected = "/accounts/login/?next=/nutella/save_favorite/1/2/"
-        self.assertRedirects(response, expected, status_code=302, target_status_code=200)
+        self.assertEqual(response.url, expected)
 
     def test_response_with_user_logged(self):
         url = reverse(self.url, kwargs=self.kwargs)
@@ -122,11 +133,13 @@ class TestDeleteFavoriteView(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.client = Client()
-        cls.user = User.objects.create_user(username='john', password='lennon')
+        cls.user_model=get_user_model()
+        cls.user = cls.user_model.objects.create_user(username='john', password='lennon', email="whatever@lennon.com")
         cls.url = 'delete_favorite'
     
     def setUp(self):
-        self.client.login(username = 'john', password='lennon')
+        logged_in = self.client.login(username = 'john', password='lennon')
+        print(logged_in)
         
     def test_response_with_no_user_logged(self):
         self.client.logout()
@@ -137,7 +150,7 @@ class TestDeleteFavoriteView(TestCase):
         self.client.logout()
         response = self.client.post(reverse(self.url, args=[1]))
         expected = "/accounts/login/?next=/nutella/delete_favorite/1/"
-        self.assertRedirects(response, expected, status_code=302, target_status_code=200)
+        self.assertEqual(response.url, expected)
     
     def test_response_with_user_logged(self):
         url = reverse(self.url, args=[1])
@@ -161,11 +174,13 @@ class TestProductUserView(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.client = Client()
-        cls.user = User.objects.create_user(username='john', password='lennon')
+        cls.user_model = get_user_model()
+        cls.user = cls.user_model.objects.create_user(username='john', password='lennon', email="jonh@lennon.com")
         cls.url = 'product_user'
     
     def setUp(self):
-        self.client.login(username = 'john', password='lennon')
+        logged_in=self.client.login(username = 'john', password='lennon')
+        print(logged_in)
 
     def test_response_with_no_user_logged(self):
         self.client.logout()
@@ -176,7 +191,7 @@ class TestProductUserView(TestCase):
         self.client.logout()
         response = self.client.post(reverse(self.url, args=[1]))
         expected = "/accounts/login/?next=/nutella/product_user/1/"
-        self.assertRedirects(response, expected, status_code=302, target_status_code=200)
+        self.assertEqual(response.url, expected)
     
     def test_response_with_user_logged(self):
         url = reverse(self.url, args=[1])

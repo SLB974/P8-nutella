@@ -1,31 +1,35 @@
-# from multiprocessing import context
 
+from django.contrib.auth import get_user_model
 from django.contrib.auth import login as log_in
-from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
-from .forms import CustomUserCreationForm, UserForm
+# from .forms import CustomUserCreationForm, UserForm
+from .forms import LoginForm, RegisterForm, UserForm
+
+User = get_user_model()
 
 def account(request):
     """ view to see account details """
     form=UserForm()
     return render(request, "users/account.html", {"form":form})
 
+def login(request):
+    form = LoginForm
+    return render(request, 'accounts/login.html', {'form':form})
+                  
 def signup(request):
-    """ view to sign up """
     if request.method == "GET":
-        return render(
-            request, "registration/signup.html",
-            {"form": CustomUserCreationForm})
-
-    form = CustomUserCreationForm(request.POST)
-
+        form = RegisterForm
+        return render(request, 'accounts/signup.html',{'form':form})
+    
+    form = RegisterForm(request.POST)
     if form.is_valid():
         user = form.save()
         log_in(request, user)
-        return redirect(reverse("index"))
-
+        return redirect(reverse('index'))
+        
+    
     username=request.POST['username']
     email=request.POST['email']
     password1=request.POST['password1']
@@ -36,14 +40,14 @@ def signup(request):
     if User.objects.filter(username=username).exists():
         context["message"]="Le nom de l'utilisateur est déjà attribué."
         context["advice"]="Choisissez un autre nom d'utilisateur."
-        return render(request, 'registration/signup.html', context)
+        return render(request, 'accounts/signup.html', context)
         
     if User.objects.filter(email=email).exists():
         context["message"]="Cet e-mail est déjà attribué à un utilisateur existant."
         context["advice"]="Choisissez une autre adresse e-mail."
-        return render(request, 'registration/signup.html', context)
+        return render(request, 'accounts/signup.html', context)
         
     if password1 != password2:
         context["message"]="Les mots de passe ne correspondent pas."
     
-    return render(request, 'registration/signup.html', context)
+    return render(request, 'accounts/signup.html', context)

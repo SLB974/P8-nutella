@@ -1,6 +1,6 @@
 from django.test import Client, TestCase
 from django.urls import reverse
-from users.forms import CustomUserCreationForm
+from users.forms import RegisterForm
 
 
 class TestUserViews(TestCase):
@@ -29,7 +29,7 @@ class TestUserViews(TestCase):
         
     def test_signup_view_GET_renders_proper_template(self) :
         response = self.client.get(reverse(self.url))
-        self.assertTemplateUsed(response, 'registration/signup.html')
+        self.assertTemplateUsed(response, 'accounts/signup.html')
         
     def test_signup_view_POST_valid_data(self):
         response =self.client.post(reverse(self.url), data={
@@ -43,7 +43,7 @@ class TestUserViews(TestCase):
     def test_signup_view_POST_user_exists(self):
         response = self.client.post(reverse(self.url), data={
             'username':'slb',
-            'email': "",
+            'email': "papa@gmail.com",
             "password1":"",
             "password2":""
         })

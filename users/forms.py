@@ -1,18 +1,17 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-from django.forms import ModelForm
-from django.urls import reverse_lazy
+from django import forms
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 
-class CustomUserCreationForm(UserCreationForm):
-    """ Custom form for signing up """
-    class Meta(UserCreationForm.Meta):
-        """ adding email field to default form """
-        fields = UserCreationForm.Meta.fields + ("email",)
-        success_url = reverse_lazy('login')
-        template_name= 'registration/signup.html'
-
-class UserForm(ModelForm):
+class RegisterForm(UserCreationForm):
     class Meta:
-        model = User
+        model = get_user_model()
+        fields =('email', 'username', 'password1', 'password2')
+        
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(label='Email / Username')
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = get_user_model()
         fields = ['username','email']

@@ -1,6 +1,6 @@
 """ testing off models """
 
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from off.models import Category, Favorite, Product
 
@@ -40,7 +40,7 @@ class FavoriteModelTest(TestCase):
             ]
     
     def test_object_name_should_be_correct(self):
-        user = User.objects.get(pk=1)
+        user = get_user_model().objects.get(pk=1)
         product = Product.objects.get(pk=1)
         replace = Product.objects.get(pk=2)
         

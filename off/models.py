@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
+from django_p8.settings import AUTH_USER_MODEL
 
 # Create your models here.
 
@@ -38,7 +39,7 @@ class Favorite(models.Model):
     """ Model representing user's favorites """
 
     user_id=models.ForeignKey(
-        User,
+        AUTH_USER_MODEL,
         on_delete=models.CASCADE, null=False, blank=False)
 
     product_id = models.ForeignKey(
