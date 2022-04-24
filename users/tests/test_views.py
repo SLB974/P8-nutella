@@ -27,19 +27,7 @@ class TestUserViews(TestCase):
         response = self.client.get(reverse(self.url))
         self.assertEqual(response.status_code, 200)
         
-    def test_signup_view_GET_renders_proper_template(self) :
-        response = self.client.get(reverse(self.url))
-        self.assertTemplateUsed(response, 'accounts/signup.html')
-        
-    def test_signup_view_POST_valid_data(self):
-        response =self.client.post(reverse(self.url), data={
-            'username': self.username,
-            'email': self.email,
-            'password1': self.password,
-            'password2': self.password
-        })
-        self.assertRedirects(response, '/nutella/', status_code=302, target_status_code=200)
-    
+   
     def test_signup_view_POST_user_exists(self):
         response = self.client.post(reverse(self.url), data={
             'username':'slb',

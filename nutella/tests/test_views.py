@@ -139,7 +139,6 @@ class TestDeleteFavoriteView(TestCase):
     
     def setUp(self):
         logged_in = self.client.login(username = 'john', password='lennon')
-        print(logged_in)
         
     def test_response_with_no_user_logged(self):
         self.client.logout()
@@ -180,7 +179,6 @@ class TestProductUserView(TestCase):
     
     def setUp(self):
         logged_in=self.client.login(username = 'john', password='lennon')
-        print(logged_in)
 
     def test_response_with_no_user_logged(self):
         self.client.logout()

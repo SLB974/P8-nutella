@@ -21,12 +21,12 @@ from django.urls import include, path
 from django.views.generic import RedirectView
 
 urlpatterns = [
-    path("", RedirectView.as_view(url="nutella/", permanent=True)),
     path("admin/", admin.site.urls),
+    path("", RedirectView.as_view(url="nutella/", permanent=True)),
     path("nutella/", include("nutella.urls")),
     path("off/", include("off.urls")),
     path("users/", include("users.urls")),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

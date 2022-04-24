@@ -1,0 +1,1 @@
+web: gunicorn django_p8.wsgi

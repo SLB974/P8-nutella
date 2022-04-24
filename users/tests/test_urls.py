@@ -17,10 +17,7 @@ class TestUserUrls(SimpleTestCase):
         url = reverse('signup')
         self.assertEqual(resolve(url).func, views.signup)
         
-    def test_login_url(self):
-        url = reverse('login')
-        self.assertEqual(resolve(url).func.view_class, LoginView)
-        
+       
     def test_logout_url(self):
         url = reverse('logout')
         self.assertEqual(resolve(url).func.view_class, LogoutView)

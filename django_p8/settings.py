@@ -16,21 +16,12 @@ from pathlib import Path
 
 from .config.settings import BDD_PASSW, DEBUG, SECRET_KEY
 
-# import dj_database_url
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = "django-insecure-t46%tfpu&dh868*%$f_cl-!5t1qiv=ycwbv)l*ud&@t6^%20p%"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
 
 ALLOWED_HOSTS = ["pur_beurre_974.herokuapp.com","127.0.0.1",
                  "testserver", "localhost", "whitenoise.runserver_nostalgic"]
@@ -42,6 +33,7 @@ ALLOWED_HOSTS = ["pur_beurre_974.herokuapp.com","127.0.0.1",
 
 INSTALLED_APPS = [
     "django.contrib.admin",
+    "django.contrib.sites",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -51,6 +43,7 @@ INSTALLED_APPS = [
     "django_dumpdata_one",
     "allauth",
     "allauth.account",
+    "allauth.socialaccount",
     "nutella",
     "off",
     "users",
@@ -72,8 +65,7 @@ ROOT_URLCONF = "django_p8.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates"),
-                 os.path.join(BASE_DIR, "templates/accounts")],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -103,28 +95,23 @@ DATABASES = {
     }
 }
 
-# db_from_env = dj_database_url.config(conn_max_age=600)
-# DATABASES["default"].update(db_from_env)
-
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
-# AUTH_PASSWORD_VALIDATORS = [
-#     {
-#         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-#     },
-#     {
-#         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-#     },
-#     {
-#         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-#     },
-#     {
-#         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-#     },
-# ]
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
 
 
 # Internationalization
@@ -152,46 +139,26 @@ STATIC_ROOT = [BASE_DIR / "static"]
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-LOGIN_REDIRECT_URL = "index"
-LOGOUT_REDIRECT_URL = "index"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 if DEBUG:
     INTERNAL_IPS = ('127.0.0.1', 'localhost',)
 
-    # MIDDLEWARE += (
-    #             'debug_toolbar.middleware.DebugToolbarMiddleware',
-    #             )
-
-    # INSTALLED_APPS += (
-    #             'debug_toolbar',
-    #             )
-
-
-    # DEBUG_TOOLBAR_PANELS = [
-    #             'debug_toolbar.panels.versions.VersionsPanel',
-    #             'debug_toolbar.panels.timer.TimerPanel',
-    #             'debug_toolbar.panels.settings.SettingsPanel',
-    #             'debug_toolbar.panels.headers.HeadersPanel',
-    #             'debug_toolbar.panels.request.RequestPanel',
-    #             'debug_toolbar.panels.sql.SQLPanel',
-    #             'debug_toolbar.panels.staticfiles.StaticFilesPanel',
-    #             'debug_toolbar.panels.templates.TemplatesPanel',
-    #             'debug_toolbar.panels.cache.CachePanel',
-    #             'debug_toolbar.panels.signals.SignalsPanel',
-    #             'debug_toolbar.panels.logging.LoggingPanel',
-    #             'debug_toolbar.panels.redirects.RedirectsPanel',
-    #             'debug_toolbar.panels.profiling.ProfilingPanel',
-    # ]
-
-    # DEBUG_TOOLBAR_CONFIG = {
-    #             'INTERCEPT_REDIRECTS': False,
-    #     }
-    
-    # import mimetypes
-    # mimetypes.add_type("application/javascript", ".js", True)
-
 TESTS_SHOW_BROWSER = True
 AUTH_USER_MODEL = 'users.CustomUser'
-AUTHENTICATION_BACKENDS = ['users.backends.EmailBackend']
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 SITE_ID=1
+ # django allauth registration settings
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_FORMS = {
+    'login': 'users.forms.CustomLoginForm',
+    'signup': 'users.forms.RegisterForm'
+}
